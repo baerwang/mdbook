@@ -6,7 +6,7 @@ src = "src"
 title = "夜雨秋灯录"
 
 [output.html]
-site-url = "/mdBook/"
+site-url = "/mdbook/"
 
 [output.html.fold]
 enable = false
