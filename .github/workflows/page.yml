@@ -27,7 +27,7 @@ jobs:
       - name: sidebar table of contents plugin ➕
         run: |
           git clone https://github.com/JorelAli/mdBook-pagetoc.git
-          cp theme/ .
+          cp -r theme/ .
           mkdir docs && cd docs && cp -r mdBook-pagetoc/style.css mdBook-pagetoc/sidebar.js 
 
       - name: Build 🔧
