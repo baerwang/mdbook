@@ -7,6 +7,9 @@ title = "夜雨秋灯录"
 
 [output.html]
 site-url = "/mdbook/"
+git-repository-url = "https://github.com/baerwang/mdbook"
+edit-url-template = "https://github.com/baerwang/mdbook/edit/main/{path}"
+mathjax-support = true
 
 [output.html.fold]
 enable = false
