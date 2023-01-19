@@ -19,14 +19,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup mdBook
+      - name: Setup mdBook 🔧
         run: cargo install mdbook
 
       - uses: actions/checkout@v2
 
-      - run: mdbook build
+      - name: sidebar table of contents plugin ➕
+        run: |
+          git clone https://github.com/JorelAli/mdBook-pagetoc.git
+          cp theme/ .
+          mkdir docs && cd docs && cp -r mdBook-pagetoc/style.css mdBook-pagetoc/sidebar.js 
 
-      - name: Deploy
+      - name: Build 🔧
+        run: mdbook build
+
+      - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
