@@ -24,12 +24,6 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: sidebar table of contents plugin ➕
-        run: |
-          git clone https://github.com/JorelAli/mdBook-pagetoc.git temp
-          cp -R temp/theme/ .
-          mkdir docs && cp -r temp/style.css temp/sidebar.js docs/ 
-
       - name: Build 🔧
         run: mdbook build
 
