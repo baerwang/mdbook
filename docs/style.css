@@ -1,25 +1,26 @@
-@media only screen and (max-width:1439px) {
+@media only screen and (max-width: 1439px) {
     .sidetoc {
         display: none;
     }
 }
 
-@media only screen and (min-width:1440px) {
+@media only screen and (min-width: 1440px) {
     main {
         position: relative;
     }
+
     .sidetoc {
         margin-left: auto;
         margin-right: auto;
-        left: calc(100% + (var(--content-max-width))/4 - 140px);
+        left: calc(100% + (var(--content-max-width)) / 4 - 140px);
         position: absolute;
     }
+
     .pagetoc {
         position: fixed;
         width: 200px;
-        height: calc(100vh - var(--menu-bar-height) - 0.67em * 4);
-        overflow: auto;
     }
+
     .pagetoc a {
         border-left: 1px solid var(--sidebar-bg);
         color: var(--fg) !important;
@@ -30,19 +31,15 @@
         text-align: left;
         text-decoration: none;
     }
+
     .pagetoc a:hover,
     .pagetoc a.active {
         background: var(--sidebar-bg);
         color: var(--sidebar-fg) !important;
     }
+
     .pagetoc .active {
         background: var(--sidebar-bg);
         color: var(--sidebar-fg);
-    }
-}
-
-@media print {
-    .sidetoc {
-        display: none;
     }
 }
