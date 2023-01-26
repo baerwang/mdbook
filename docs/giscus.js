@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
     element.setAttribute("data-term", "0");
     element.setAttribute("data-reactions-enabled", "1");
     element.setAttribute("data-emit-metadata", "0");
-    element.setAttribute("data-input-position", "bottom");
+    element.setAttribute("data-input-position", "top");
     element.setAttribute("data-theme", giscusTheme);
     element.setAttribute("data-lang", "zh-CN");
     element.setAttribute("data-loading", "lazy");
