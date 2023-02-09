@@ -11,6 +11,7 @@
 - [Tech Blog](tech/README.md)
 
     - [Nginx](tech/middleware/Nginx.md)
+    - [跨云厂商部署](tech/cloudnative/clouddeploy.md)
 
 # other
 
