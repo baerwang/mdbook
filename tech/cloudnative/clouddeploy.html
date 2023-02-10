@@ -208,6 +208,7 @@ nm.example.com
 <p><img src="pics/clouddeploy/2023-02-08-22-11-10-image.png" alt="" /></p>
 <p><img src="pics/clouddeploy/2023-02-08-22-12-24-image.png" alt="" /></p>
 <h3 id="安装netclient"><a class="header" href="#安装netclient">安装netclient</a></h3>
+<p>在 <code>master/node1/node2</code> 安装 netclient 执行建立连接</p>
 <p><a href="https://docs.netmaker.org/netclient.html">使用教程</a></p>
 <pre><code class="language-shell">curl -sL 'https://apt.netmaker.org/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/netclient.asc
 curl -sL 'https://apt.netmaker.org/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/netclient.list
@@ -215,13 +216,13 @@ apt update
 apt install netclient
 netclient -v
 </code></pre>
-<p>建立链接</p>
+<p>建立连接</p>
 <pre><code class="language-shell">netclient join -t &lt;AccessToken&gt;
 </code></pre>
-<p>建立链接</p>
+<p>建立连接</p>
 <pre><code class="language-shell">netclient connect -n dev
 </code></pre>
-<p>断开链接</p>
+<p>断开连接</p>
 <pre><code class="language-shell">netclient disconnect -n dev
 </code></pre>
 <h3 id="验证网络"><a class="header" href="#验证网络">验证网络</a></h3>
