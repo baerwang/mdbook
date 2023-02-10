@@ -89,6 +89,8 @@ wget -qO /root/nm-quick-interactive.sh https://raw.githubusercontent.com/gravitl
 
 ### 安装netclient
 
+在 `master/node1/node2` 安装 netclient 执行建立连接
+
 [使用教程](https://docs.netmaker.org/netclient.html)
 
 ```shell
@@ -99,19 +101,19 @@ apt install netclient
 netclient -v
 ```
 
-建立链接
+建立连接
 
 ```shell
 netclient join -t <AccessToken>
 ```
 
-建立链接
+建立连接
 
 ```shell
 netclient connect -n dev
 ```
 
-断开链接
+断开连接
 
 ```shell
 netclient disconnect -n dev
