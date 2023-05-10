@@ -3,6 +3,7 @@
 ## 中间件
 
 * [`Nginx`](middleware/Nginx.md)
+* [`Kafka使用指南`](middleware/kafka.md)
 
 ## 云原生
 

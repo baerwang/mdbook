@@ -11,6 +11,7 @@
 - [Tech Blog](tech/README.md)
 
     - [Nginx](tech/middleware/Nginx.md)
+    - [Kafka使用指南](tech/middleware/kafka.md)
     - [跨云厂商部署](tech/cloudnative/clouddeploy.md)
     - [协作合并多仓库](tech/git/merge_two_repo.md)
 
