@@ -95,6 +95,12 @@ export KAFKA_OPTS=-Djava.security.auth.login.config=jaas/zk-server.jass
 ./bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
 ```
 
+### 添加密码
+
+```shell
+./bin/kafka-configs.sh --zookeeper localhost:2181 --alter --add-config 'SCRAM-SHA-256=[password=admin]' --entity-type users --entity-name admin
+```
+
 ### kafka server
 
 ```shell
@@ -128,4 +134,10 @@ export KAFKA_OPTS=-Djava.security.auth.login.config=jaas/kafka-server.jaa
 
 ```shell
 ./bin/kafka-topics.sh --bootstrap-server x:9092 --create --topic Topic_x --config max.message.bytes=36700160 (单位为bytes，m转换bytes）
+```
+
+### 查看主题的详细信息
+
+```shell
+./bin/kafka-topics.sh --bootstrap-server x:9092 --describe --topic Topic_x --command-config jaas-conf/producer.conf
 ```
