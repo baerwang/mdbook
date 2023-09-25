@@ -9,12 +9,6 @@
 
 * [`跨云厂商部署`](cloudnative/clouddeploy.md)
 
-## 安全
-
-* [secskill](https://ninjia.gitbook.io/secskill/)
-* [websec](https://websec.readthedocs.io/zh/latest/)
-* [sec-learn-all](https://testercc.github.io/)
-
 ## Git
 
 * [`协作合并多仓库`](git/merge_two_repo.md)
