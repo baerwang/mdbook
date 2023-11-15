@@ -11,7 +11,7 @@ git-repository-url = "https://github.com/baerwang/mdbook"
 edit-url-template = "https://github.com/baerwang/mdbook/edit/main/{path}"
 mathjax-support = true
 additional-css = ["docs/style.css"]
-additional-js = ["docs/sidebar.js", "docs/giscus.js"]
+additional-js = ["docs/giscus.js"]
 
 [output.html.fold]
 enable = false
