@@ -8,6 +8,7 @@
 ## 云原生
 
 * [`跨云厂商部署`](cloudnative/clouddeploy.md)
+* [`K8s组件`](cloudnative/k8s-subassembly.md)
 
 ## Git
 
