@@ -28,3 +28,4 @@
 
     - [2021](others/summarize/2021.md)
     - [2022](others/summarize/2022.md)
+    - [2023](others/summarize/2023.md)
