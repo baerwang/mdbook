@@ -14,6 +14,7 @@
     - [Kafka使用指南](tech/middleware/kafka.md)
     - [跨云厂商部署](tech/cloudnative/clouddeploy.md)
     - [K8s组件](tech/cloudnative/k8s-subassembly.md)
+    - [OPA](tech/cloudnative/open-policy-agent.md)
     - [协作合并多仓库](tech/git/merge_two_repo.md)
 
 - [Sec Blog](sec/README.md)
