@@ -18,6 +18,10 @@
     - [OPA](tech/cloudnative/open-policy-agent.md)
     - [协作合并多仓库](tech/git/merge_two_repo.md)
 
+- [Rust Blog](rust/README.md)
+
+    - [benchmark](rust/bench.md)
+
 - [Sec Blog](sec/README.md)
 
     - [abptts](sec/port_forwarding/abptts.md)
