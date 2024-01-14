@@ -38,8 +38,8 @@ window.addEventListener('load', function () {
     element.setAttribute("data-emit-metadata", "0");
     element.setAttribute("data-input-position", "top");
     element.setAttribute("data-theme", giscusTheme);
-    element.setAttribute("data-lang", "zh-CN");
-    element.setAttribute("data-loading", "lazy");
+    // element.setAttribute("data-lang", "zh-CN");
+    // element.setAttribute("data-loading", "lazy");
     document.getElementById("giscus-container").appendChild(element);
 });
 
