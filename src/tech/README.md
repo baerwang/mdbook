@@ -9,6 +9,7 @@
 
 * [`跨云厂商部署`](cloudnative/clouddeploy.md)
 * [`K8s组件`](cloudnative/k8s-subassembly.md)
+* [`K8s client-go`](cloudnative/k8s-client-go.md)
 * [`OPA`](cloudnative/open-policy-agent.md)
 
 ## Git
