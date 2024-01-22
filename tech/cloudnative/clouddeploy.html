@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>跨云厂商部署 - notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <!-- Change giscus font size -->
+        <style>
+            body .pagetoc {font-size: 1px;}
+        </style>
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../home.html">Home</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">learn</li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../tech/index.html"><strong aria-hidden="true">1.</strong> Tech Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../tech/middleware/Nginx.html"><strong aria-hidden="true">1.1.</strong> Nginx</a></li><li class="chapter-item expanded "><a href="../../tech/middleware/kafka.html"><strong aria-hidden="true">1.2.</strong> Kafka使用指南</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/clouddeploy.html" class="active"><strong aria-hidden="true">1.3.</strong> 跨云厂商部署</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/k8s-subassembly.html"><strong aria-hidden="true">1.4.</strong> K8s组件</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/k8s-client-go.html"><strong aria-hidden="true">1.5.</strong> K8s client-go</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/open-policy-agent.html"><strong aria-hidden="true">1.6.</strong> OPA</a></li><li class="chapter-item expanded "><a href="../../tech/git/merge_two_repo.html"><strong aria-hidden="true">1.7.</strong> 协作合并多仓库</a></li></ol></li><li class="chapter-item expanded "><a href="../../rust/index.html"><strong aria-hidden="true">2.</strong> Rust Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../rust/bench.html"><strong aria-hidden="true">2.1.</strong> benchmark</a></li></ol></li><li class="chapter-item expanded "><a href="../../sec/index.html"><strong aria-hidden="true">3.</strong> Sec Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../sec/port_forwarding/abptts.html"><strong aria-hidden="true">3.1.</strong> abptts</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">other</li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../others/life/index.html"><strong aria-hidden="true">4.</strong> 杂七杂八</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../others/summarize/index.html"><strong aria-hidden="true">5.</strong> 总结</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../others/summarize/2021.html"><strong aria-hidden="true">5.1.</strong> 2021</a></li><li class="chapter-item expanded "><a href="../../others/summarize/2022.html"><strong aria-hidden="true">5.2.</strong> 2022</a></li><li class="chapter-item expanded "><a href="../../others/summarize/2023.html"><strong aria-hidden="true">5.3.</strong> 2023</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/baerwang/mdbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/baerwang/mdbook/edit/main/src/tech/cloudnative/clouddeploy.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <h1 id="k3s跨云厂商部署"><a class="header" href="#k3s跨云厂商部署">K3s跨云厂商部署</a></h1>
+<p>为什么要打造跨云厂商部署，因为云服务资源非常有限的，部署容器效率等等方面，造成这么一需求来，本篇采用k3s做为方案</p>
+<h2 id="wireguard"><a class="header" href="#wireguard">Wireguard</a></h2>
+<p><a href="https://www.wireguard.com/">Wireguard</a> 能让处于不同网络的主机组成一个子网，是一种高性能的廉价组网方案，是基于最前沿密码学构建的轻量、快速、安全、现代化的开源VPN
+Wireguard还是个跨平台，小到微型嵌入式设备，大到超级计算机，常用Windows、MacOS、Linux、iOS和安卓操作系统平台，WireGuard都能按照预期高效运行，该代码将被合并到到Linux主线5.6内核中</p>
+<h2 id="netmaker"><a class="header" href="#netmaker">Netmaker</a></h2>
+<p><a href="https://github.com/gravitl/netmaker">Netmaker</a> 是一个用来配置 WireGuard 全互联模式的可视化工具，它的功能非常强大，不仅支持 UDP 打洞、NAT 穿透、多租户，还可以使用 Kubernetes 配置清单来部署，客户端几乎适配了所有平台，包括 Linux, Mac 和 Windows，还可以通过 WireGuard 原生客户端连接 iPhone 和 Android</p>
+<h2 id="k3s"><a class="header" href="#k3s">K3s</a></h2>
+<p><a href="https://docs.k3s.io/">K3s</a> 是一个完全兼容，轻量级的 Kubernetes 发行版</p>
+<h1 id="环境准备"><a class="header" href="#环境准备">环境准备</a></h1>
+<p>需要三台机器，一个公网IP</p>
+<h2 id="机器清单"><a class="header" href="#机器清单">机器清单</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Node</th><th>Local</th><th>IP</th><th>Network</th><th>OS</th><th>Specification</th></tr></thead><tbody>
+<tr><td>Master</td><td>aliyun</td><td>1.x.x.x</td><td>VPC/EIP</td><td>Ubuntu 22.04.1 LTS</td><td>2C2G</td></tr>
+<tr><td>Node1</td><td>VM</td><td>10.x.x.x</td><td>Lan Private IP</td><td>Centos 7</td><td>8C8G</td></tr>
+<tr><td>Node2</td><td>VM</td><td>10.x.x.x</td><td>Lan Private IP</td><td>Centos 7</td><td>2C4G</td></tr>
+</tbody></table>
+</div>
+<h2 id="内核升级"><a class="header" href="#内核升级">内核升级</a></h2>
+<p>目前wg已经被合并到5.6内核了，如果你的机器内核大于这个版本，你需要装<strong>wireguard-tools</strong>工具即可，升级内核或者下载wireguard工具该链接如下</p>
+<p><a href="https://www.wireguard.com/install/">Installation - WireGuard</a></p>
+<pre><code class="language-shell">apt install wireguard
+wg --version
+</code></pre>
+<h2 id="网络规划与部署"><a class="header" href="#网络规划与部署">网络规划与部署</a></h2>
+<p>Wireguard可以使用wg命令操作，操作wg有Netmaker和Wg Gen Web易用的工具，这里使用Netmaker</p>
+<h3 id="安装netmaker"><a class="header" href="#安装netmaker">安装Netmaker</a></h3>
+<p>Netmaker 需要安装到有公网IP节点上[Master]</p>
+<p>另外还需要域名，如果不需要域名，下载好自行把对应的domain改成IP</p>
+<pre><code>dashboard.example.com
+api.example.com
+broker.example.com
+nm.example.com
+</code></pre>
+<p>安全防火墙需要放行 <strong>TCP:80 443 UDP:51820-51830</strong></p>
+<pre><code class="language-shell">wget -qO /root/nm-quick-interactive.sh https://raw.githubusercontent.com/gravitl/netmaker/master/scripts/nm-quick-interactive.sh &amp;&amp; sudo chmod +x /root/nm-quick-interactive.sh &amp;&amp; sudo /root/nm-quick-interactive.sh
+</code></pre>
+<h3 id="访问netmaker"><a class="header" href="#访问netmaker">访问Netmaker</a></h3>
+<ul>
+<li>访问<code>https://dashboard.&lt;your domain&gt;</code></li>
+</ul>
+<p><img src="pics/clouddeploy/2023-02-08-22-02-45-image.png" alt="" /></p>
+<h3 id="创建网络"><a class="header" href="#创建网络">创建网络</a></h3>
+<p>输入名称和IP，不想操作可以点击AUTOFILL，创建成功在列表会显示dev</p>
+<p><img src="pics/clouddeploy/2023-02-08-22-00-57-image.png" alt="" /></p>
+<p><img src="pics/clouddeploy/2023-02-08-22-05-34-image.png" alt="" /></p>
+<h3 id="创建access-key"><a class="header" href="#创建access-key">创建Access Key</a></h3>
+<p><strong>name</strong> 设置密钥的名称</p>
+<p><strong>uses</strong> 代表这个网络能使用多少节点，这里设置为10</p>
+<p><img src="pics/clouddeploy/2023-02-08-22-07-02-image.png" alt="" /></p>
+<p><img src="pics/clouddeploy/2023-02-08-22-11-10-image.png" alt="" /></p>
+<p><img src="pics/clouddeploy/2023-02-08-22-12-24-image.png" alt="" /></p>
+<h3 id="安装netclient"><a class="header" href="#安装netclient">安装netclient</a></h3>
+<p>在 <code>master/node1/node2</code> 安装 netclient 执行建立连接</p>
+<p><a href="https://docs.netmaker.org/netclient.html">使用教程</a></p>
+<pre><code class="language-shell">curl -sL 'https://apt.netmaker.org/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/netclient.asc
+curl -sL 'https://apt.netmaker.org/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/netclient.list
+apt update
+apt install netclient
+netclient -v
+</code></pre>
+<p>建立连接</p>
+<pre><code class="language-shell">netclient join -t &lt;AccessToken&gt;
+</code></pre>
+<p>建立连接</p>
+<pre><code class="language-shell">netclient connect -n dev
+</code></pre>
+<p>断开连接</p>
+<pre><code class="language-shell">netclient disconnect -n dev
+</code></pre>
+<h3 id="验证网络"><a class="header" href="#验证网络">验证网络</a></h3>
+<pre><code class="language-shell">wg
+</code></pre>
+<p><img src="pics/clouddeploy/2023-02-08-22-20-16-image.png" alt="" /></p>
+<h2 id="安装k3s"><a class="header" href="#安装k3s">安装k3s</a></h2>
+<p><a href="https://docs.k3s.io/zh/installation/configuration">安装使用教程</a></p>
+<h4 id="要求"><a class="header" href="#要求">要求</a></h4>
+<p>两个节点不能具有相同的主机名。如果多个节点有相同的主机名，</p>
+<p>使用<code>--with-node-id</code>选项为每个节点附加一个随机后缀，或者使用<code>--node-name</code>或<code>$K3S_NODE_NAME</code>为添加到集群的每个节点设计一个独特的名称</p>
+<h3 id="硬件"><a class="header" href="#硬件">硬件</a></h3>
+<p>最少使用2c2g</p>
+<h3 id="网络"><a class="header" href="#网络">网络</a></h3>
+<p>K3s Server 需要 <code>6443</code> 端口才能被所有节点访问</p>
+<p>使用 <code>Flannel Wireguard</code> 后端时，节点需要能够通过 UDP 端口 <code>51820</code> 和 <code>51821</code>（使用 IPv6 时）访问其他节点。该节点不应侦听任何其他端口。K3s 使用反向隧道建立节点与 Server 的出站连接，所有 kubelet 流量都通过该隧道进行。但是，如果你不使用 Flannel 并提供自己的自定义 CNI，那么 K3s 不需要 Flannel 所需的端口</p>
+<p>本篇文档使用 wg 打通需要flannel cni配合</p>
+<h4 id="在node1安装k3s-server"><a class="header" href="#在node1安装k3s-server">在[node1]安装k3s server</a></h4>
+<p><a href="https://docs.k3s.io/zh/reference/server-config#agent-%E7%BD%91%E7%BB%9C">flannel 使用教程</a></p>
+<p>为什么要在 <code>node1</code> 节点安装k3s server，是因为云服务资源不够，需要在内网安装，内部服务器随便折腾</p>
+<p>使用国内链接下载，server exec <code>flannel-iface</code> 加上wg定义的网卡名称</p>
+<p>安装</p>
+<pre><code class="language-shell">curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn INSTALL_K3S_EXEC=&quot;server --flannel-iface nm-dev&quot; sh -
+</code></pre>
+<p>停止</p>
+<pre><code class="language-shell">sh /usr/local/bin/k3s-killall.sh
+</code></pre>
+<p>卸载</p>
+<pre><code class="language-shell">sh /usr/local/bin/k3s-uninstall.sh
+</code></pre>
+<p>获取token</p>
+<pre><code class="language-shell">cat /var/lib/rancher/k3s/server/node-token
+</code></pre>
+<p>查看节点</p>
+<pre><code class="language-shell">kubectl get nodes
+</code></pre>
+<h4 id="在masternode2安装k3s-agent"><a class="header" href="#在masternode2安装k3s-agent">在[master/node2]安装k3s agent</a></h4>
+<p>安装</p>
+<p><code>10.x.x.x</code> 是 <code>node1 wg</code>的ip</p>
+<p><code>public ip</code> 是对外显示的ip</p>
+<pre><code class="language-shell">curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn K3S_URL=https://10.x.x.x:6443 K3S_TOKEN=&lt;token&gt; INSTALL_K3S_EXEC=&quot;agent --flannel-iface nm-dev --node-external-ip &lt;public ip&gt;&quot; sh -
+</code></pre>
+<p>卸载</p>
+<pre><code class="language-shell">sh /usr/local/bin/k3s-agent-uninstall.sh
+</code></pre>
+<p>将[node1]文件移动到对应的master/node2节点，否则agent 无法执行 <code>kubectl</code> 命令</p>
+<pre><code class="language-shell">scp -r /etc/rancher/k3s/k3s.yaml root@[master/node2]:/etc/rancher/k3s/
+</code></pre>
+<p>在master/node2节点修改k3s.yaml</p>
+<pre><code>server: https://{node1}:6443
+</code></pre>
+<p>添加变量</p>
+<pre><code class="language-shell">echo &quot;export KUBECONFIG=/etc/rancher/k3s/k3s.yaml&quot; &gt;&gt; ~/.bash_profile
+source ~/.bash_profile
+</code></pre>
+<p>查看节点</p>
+<pre><code class="language-shell">kubectl get nodes
+</code></pre>
+<h2 id="验证部署"><a class="header" href="#验证部署">验证部署</a></h2>
+<p>创建 namespace</p>
+<pre><code class="language-shell">kubectl create namespace dev
+</code></pre>
+<p>创建 <code>nginx.yaml</code> 文件</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pc-deployment
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-pod
+  template:
+    metadata:
+      labels:
+        app: nginx-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-nodeport
+  namespace: dev
+spec:
+  selector:
+    app: nginx-pod
+  type: LoadBalancer
+  ports:
+  - port: 30800
+    targetPort: 80
+</code></pre>
+<p>执行文件</p>
+<pre><code class="language-shell">kubectl create -f nginx.yaml
+</code></pre>
+<p>查看pod,svc</p>
+<pre><code class="language-shell">kubectl get pods,svc -n dev -owide
+</code></pre>
+<p>访问部署各个节点nginx</p>
+<pre><code class="language-shell">curl -I http://&lt;public ip&gt;:30800
+</code></pre>
+
+                        <div id="giscus-container"></div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../tech/middleware/kafka.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../tech/cloudnative/k8s-subassembly.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../tech/middleware/kafka.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../tech/cloudnative/k8s-subassembly.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../../docs/giscus.js"></script>
+
+
+    </body>
+</html>

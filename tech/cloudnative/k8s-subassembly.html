@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>K8s组件 - notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <!-- Change giscus font size -->
+        <style>
+            body .pagetoc {font-size: 1px;}
+        </style>
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../home.html">Home</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">learn</li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../tech/index.html"><strong aria-hidden="true">1.</strong> Tech Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../tech/middleware/Nginx.html"><strong aria-hidden="true">1.1.</strong> Nginx</a></li><li class="chapter-item expanded "><a href="../../tech/middleware/kafka.html"><strong aria-hidden="true">1.2.</strong> Kafka使用指南</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/clouddeploy.html"><strong aria-hidden="true">1.3.</strong> 跨云厂商部署</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/k8s-subassembly.html" class="active"><strong aria-hidden="true">1.4.</strong> K8s组件</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/k8s-client-go.html"><strong aria-hidden="true">1.5.</strong> K8s client-go</a></li><li class="chapter-item expanded "><a href="../../tech/cloudnative/open-policy-agent.html"><strong aria-hidden="true">1.6.</strong> OPA</a></li><li class="chapter-item expanded "><a href="../../tech/git/merge_two_repo.html"><strong aria-hidden="true">1.7.</strong> 协作合并多仓库</a></li></ol></li><li class="chapter-item expanded "><a href="../../rust/index.html"><strong aria-hidden="true">2.</strong> Rust Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../rust/bench.html"><strong aria-hidden="true">2.1.</strong> benchmark</a></li></ol></li><li class="chapter-item expanded "><a href="../../sec/index.html"><strong aria-hidden="true">3.</strong> Sec Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../sec/port_forwarding/abptts.html"><strong aria-hidden="true">3.1.</strong> abptts</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">other</li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../others/life/index.html"><strong aria-hidden="true">4.</strong> 杂七杂八</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../others/summarize/index.html"><strong aria-hidden="true">5.</strong> 总结</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../others/summarize/2021.html"><strong aria-hidden="true">5.1.</strong> 2021</a></li><li class="chapter-item expanded "><a href="../../others/summarize/2022.html"><strong aria-hidden="true">5.2.</strong> 2022</a></li><li class="chapter-item expanded "><a href="../../others/summarize/2023.html"><strong aria-hidden="true">5.3.</strong> 2023</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/baerwang/mdbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/baerwang/mdbook/edit/main/src/tech/cloudnative/k8s-subassembly.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <h2 id="k8s-组件整理"><a class="header" href="#k8s-组件整理">K8s 组件整理</a></h2>
+<h3 id="控制平面组件"><a class="header" href="#控制平面组件">控制平面组件</a></h3>
+<h4 id="apiserver"><a class="header" href="#apiserver">APIServer</a></h4>
+<p>集群管理API入口</p>
+<h4 id="etcd"><a class="header" href="#etcd">ETCD</a></h4>
+<p>k8s存储，用于服务发现，各种资源对象信息(可以理解为DB)</p>
+<h4 id="controller-manager"><a class="header" href="#controller-manager">Controller-Manager</a></h4>
+<pre><code>Replication Controller 保证deployments副本。
+Node Controller 监控etcd存储节点各类信息。
+ResourceQuota Controller 期望的资源信息通过API Server写入到ETCD中，系统请求资源会读这些信息，否则创建失败
+Namespace Controller 创建namespace来进行资源隔离。
+Endpoint Controller 负责生成和维护所有的Endpoint对象的控制器，创建新的Service时候，会生成对应的Endpoint
+ServiceAccount Controller 为新的namespace创建默认的服务账号
+</code></pre>
+<h4 id="scheduler"><a class="header" href="#scheduler">Scheduler</a></h4>
+<p>k8s的调度器，Schedule监听APIServer，创建Pod，该组件负责Pod如那个Node节点绑定，写入ETCD <code>调度器分两个阶段</code></p>
+<blockquote>
+<p>predicate 策略 （过滤不符合条件的节点）</p>
+</blockquote>
+<pre><code>PodFitsPorts：同P odFitsHostPorts。
+PodFitsHostPorts：检查是否有 Host Ports 冲突。
+PodFitsResources：检查 Node 的资源是否充足，包括允许的Pod数量、CPU、内存、GPU个数以及其他的OpaqueIntResources。
+HostName：检查 pod.Spec.NodeName 是否与候选节点一致。
+MatchNodeSelector：检查候选节点的 pod.Spec.NodeSelector 是否匹配。
+NoVolumeZoneConflict：检查 volume zone 是否冲突。
+MatchInterPodAffinity：检查是否匹配 Pod 的亲和性要求。
+NoDiskConflict：检查是否存在 Volume 冲突，仅限于 GCE PD、AWS EBS、Ceph RBD以及 iSCSI。
+PodToleratesNodeTaints：检查 Pod 是否容忍 Node Taints。
+CheckNodeMemoryPressure：检查 Pod 是否可以调度到 MemoryPressure 的节点上。
+CheckNodeDiskPressure：检查 Pod 是否可以调度到 DiskPressure 的节点上。
+NoVolumeNodeConflict：检查节点是否满足 Pod 所引用的 Volume 的条件。
+</code></pre>
+<blockquote>
+<p>priority 策略 （先级排序，选中优先级最高的节点）</p>
+</blockquote>
+<pre><code>SelectorSpreadPriority：优先减少节点上属于同一个 Service 或 Replication Controller 的 Pod 数量。
+	- 尽量将同一个 rc 下的多个副本分散到不同节点，增加可用性
+InterPodAffinityPriority：优先将Pod调度到相同的拓扑上(如同一个节点、Rack、Zone等)。
+LeastRequestedPriority：优先调度到请求资源少的节点上。
+BalancedResourceAllocation：优先平衡各节点的资源使用。
+NodePreferAvoidPodsPriority：alpha.kubernetes.io/preferAvoidPods字段判断，权重为10000，避免其他优先级策略的影响
+NodeAffinityPriority：优先调度到匹配NodeAffinity的节点上。
+TaintTolerationPriority：优先调度到匹配TaintToleration的节点上。
+ServiceSpreadingPriority：尽量将同一个service的Pod分布到不同节点上，已经被SelectorSpreadPriority替代( 默认未使用)。
+EqualPriority：将所有节点的优先级设置为1 (默认未使用)。
+ImageLocalityPriority：尽量将使用大镜像的容器调度到已经下拉了该镜像的节点上(默认未使用)。
+MostRequestedPriority：尽量调度到已经使用过的Node.上，特别适用于cluster-autoscaler (默认未使用)。
+</code></pre>
+<h3 id="node组件"><a class="header" href="#node组件">Node组件</a></h3>
+<h4 id="kube-proxy"><a class="header" href="#kube-proxy">Kube-Proxy</a></h4>
+<p>负责接受转发请求，核心要点将Service的访问请求转发到后台的具体某个Pod</p>
+<h4 id="kubectl"><a class="header" href="#kubectl">Kubectl</a></h4>
+<p>是k8s集群上的每个节点，用来保证容器运行在Pod中，kubectl接收一组通过各类提供给它的PodSpecs，确保这些PodSpecs中描述的容器运行状态并健康，当scheduler确定在某个node上运行pod，会将pod的具体配置信息（images，volume等）发送给改节点的kubectl，kubectl根据这个信息去创建和运行容器，将master上报运行状态。</p>
+
+                        <div id="giscus-container"></div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../tech/cloudnative/clouddeploy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../tech/cloudnative/k8s-client-go.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../tech/cloudnative/clouddeploy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../tech/cloudnative/k8s-client-go.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../../docs/giscus.js"></script>
+
+
+    </body>
+</html>
