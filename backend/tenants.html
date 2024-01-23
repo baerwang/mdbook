@@ -1,0 +1,524 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>多租户权限管理设计 - notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <!-- Change giscus font size -->
+        <style>
+            body .pagetoc {font-size: 1px;}
+        </style>
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../home.html">Home</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">learn</li><li class="spacer"></li><li class="chapter-item expanded "><a href="../tech/index.html"><strong aria-hidden="true">1.</strong> Tech Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tech/middleware/Nginx.html"><strong aria-hidden="true">1.1.</strong> Nginx</a></li><li class="chapter-item expanded "><a href="../tech/middleware/kafka.html"><strong aria-hidden="true">1.2.</strong> Kafka使用指南</a></li><li class="chapter-item expanded "><a href="../tech/cloudnative/clouddeploy.html"><strong aria-hidden="true">1.3.</strong> 跨云厂商部署</a></li><li class="chapter-item expanded "><a href="../tech/cloudnative/k8s-subassembly.html"><strong aria-hidden="true">1.4.</strong> K8s组件</a></li><li class="chapter-item expanded "><a href="../tech/cloudnative/k8s-client-go.html"><strong aria-hidden="true">1.5.</strong> K8s client-go</a></li><li class="chapter-item expanded "><a href="../tech/cloudnative/open-policy-agent.html"><strong aria-hidden="true">1.6.</strong> OPA</a></li><li class="chapter-item expanded "><a href="../tech/git/merge_two_repo.html"><strong aria-hidden="true">1.7.</strong> 协作合并多仓库</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/index.html"><strong aria-hidden="true">2.</strong> Rust Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/bench.html"><strong aria-hidden="true">2.1.</strong> benchmark</a></li></ol></li><li class="chapter-item expanded "><a href="../sec/index.html"><strong aria-hidden="true">3.</strong> Sec Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sec/port_forwarding/abptts.html"><strong aria-hidden="true">3.1.</strong> abptts</a></li></ol></li><li class="chapter-item expanded "><a href="../backend/index.html"><strong aria-hidden="true">4.</strong> Backend Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../backend/tenants.html" class="active"><strong aria-hidden="true">4.1.</strong> 多租户权限管理设计</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">other</li><li class="spacer"></li><li class="chapter-item expanded "><a href="../others/life/index.html"><strong aria-hidden="true">5.</strong> 杂七杂八</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../others/summarize/index.html"><strong aria-hidden="true">6.</strong> 总结</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/summarize/2021.html"><strong aria-hidden="true">6.1.</strong> 2021</a></li><li class="chapter-item expanded "><a href="../others/summarize/2022.html"><strong aria-hidden="true">6.2.</strong> 2022</a></li><li class="chapter-item expanded "><a href="../others/summarize/2023.html"><strong aria-hidden="true">6.3.</strong> 2023</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/baerwang/mdbook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/baerwang/mdbook/edit/main/src/backend/tenants.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                        <h1 id="多租户权限管理设计"><a class="header" href="#多租户权限管理设计">多租户权限管理设计</a></h1>
+<blockquote>
+<p>使用ES来存储来设计多租户权限管理，领域对象有租户、团队、项目、人员、角色（租户管理员、团队管理员、普通成员）、菜单、权限。</p>
+<p>索引可以加上ID字段用来保存到数据库用来当作维护，先保存到DB，再去保存到ES上
+如果ES挂了可以用DB将ES操作restore/reindex，多个持久化的方式，当然不用DB也可以，数据不是特别重要的话</p>
+<p>多租户一般场景都是查询大于删除和修改，可以用基于左右值编码（前提是要用DB的，ES不合适嵌套方式去做）</p>
+<p>下面索引是根据<a href="#DB">DB的表结构</a>来设计的
+菜单，角色，权限需要设置个表来作为全局字典，给前端渲染使用
+<a href="#%E4%BA%BA%E5%91%98%E5%92%8C%E8%A7%92%E8%89%B2,%E8%8F%9C%E5%8D%95%EF%BC%8C%E6%9D%83%E9%99%90%E5%85%B3%E8%81%94-%28/users_relation%29">users-relation</a> 这里索引设计的是考虑前端渲染的问题，后面接口授权需要加redis来配合使用</p>
+</blockquote>
+<h1 id="es"><a class="header" href="#es">ES</a></h1>
+<blockquote>
+<p>设计索引，本篇文档忽略掉settings，后面再规划根据场景来设置settings的相关字段</p>
+</blockquote>
+<h2 id="租户-tenants"><a class="header" href="#租户-tenants">租户 (/tenants)</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;name&quot;:{
+          &quot;ignore_above&quot;:100,
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="团队-teams"><a class="header" href="#团队-teams">团队 (/teams)</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;tenants_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;name&quot;:{
+          &quot;ignore_above&quot;:100,
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        },
+        &quot;update_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="项目-projects"><a class="header" href="#项目-projects">项目 (/projects)</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;tenants_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;name&quot;:{
+          &quot;ignore_above&quot;:100,
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        },
+        &quot;update_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="人员-users"><a class="header" href="#人员-users">人员 (/users)</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;tenants_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;username&quot;:{
+          &quot;ignore_above&quot;:100,
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;password&quot;:{
+          &quot;ignore_above&quot;:20,
+          &quot;type&quot;:&quot;keyword&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        },
+        &quot;update_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="角色-role"><a class="header" href="#角色-role">角色 (/role)</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;tenants_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;name&quot;:{
+          &quot;ignore_above&quot;:100,
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;role_type&quot;:{
+          &quot;type&quot;:&quot;byte&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        },
+        &quot;update_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="菜单-menu"><a class="header" href="#菜单-menu">菜单 /menu</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;pid&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;tenants_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;name&quot;:{
+          &quot;ignore_above&quot;:100,
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;display_order&quot;:{
+          &quot;type&quot;:&quot;byte&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        },
+        &quot;update_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="人员和角色菜单权限关联-users_relation"><a class="header" href="#人员和角色菜单权限关联-users_relation">人员和角色,菜单，权限关联 (/users_relation)</a></h2>
+<pre><code class="language-json">{
+  &quot;mappings&quot;:{
+    &quot;doc&quot;:{
+      &quot;properties&quot;:{
+        &quot;user_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;role_id&quot;:{
+          &quot;type&quot;:&quot;long&quot;
+        },
+        &quot;role_name&quot;:{
+          &quot;type&quot;:&quot;text&quot;
+        },
+        &quot;menus&quot;:{
+          &quot;type&quot;:&quot;object&quot;,
+          &quot;properties&quot;:{
+            &quot;id&quot;:{
+              &quot;type&quot;:&quot;long&quot;
+            },
+            &quot;name&quot;:{
+              &quot;type&quot;:&quot;text&quot;
+            }
+          }
+        },
+        &quot;permissions&quot;:{
+          &quot;type&quot;:&quot;array&quot;
+        },
+        &quot;create_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        },
+        &quot;update_time&quot;:{
+          &quot;type&quot;:&quot;date&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h1 id="db"><a class="header" href="#db">DB</a></h1>
+<h2 id="租户-tenants-1"><a class="header" href="#租户-tenants-1">租户 (tenants)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>name</td><td>租户名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="团队-teams-1"><a class="header" href="#团队-teams-1">团队 (teams)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>tenant_id</td><td>租户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>name</td><td>团队名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="项目-projects-1"><a class="header" href="#项目-projects-1">项目 (projects)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>tenant_id</td><td>租户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>teams_id</td><td>团队ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>name</td><td>项目名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="人员-users-1"><a class="header" href="#人员-users-1">人员 (users)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>tenant_id</td><td>租户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>username</td><td>用户名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>password</td><td>密码</td><td>varchar(20)</td><td>NOT NULL</td><td>存储解密使用Argon2 <code>golang.org/x/crypto/argon2</code></td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="菜单-menu-1"><a class="header" href="#菜单-menu-1">菜单 (menu)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>tenant_id</td><td>租户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>pid</td><td>父菜单ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>name</td><td>菜单名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>display_order</td><td>显示顺序</td><td>int</td><td>NOT NULL</td><td></td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="角色-role-1"><a class="header" href="#角色-role-1">角色 (role)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>tenant_id</td><td>租户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>name</td><td>角色名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>type</td><td>角色类型</td><td>int</td><td>NOT NULL</td><td>1:超级管理员 2:租户管理员 3:团队管理员 4:普通成员</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="权限-permissions"><a class="header" href="#权限-permissions">权限 (permissions)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>tenant_id</td><td>租户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>name</td><td>权限名称</td><td>varchar(100)</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="人员和角色关联-user_role"><a class="header" href="#人员和角色关联-user_role">人员和角色关联 (user_role)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>user_id</td><td>用户ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>role_id</td><td>角色ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="角色和权限-role_permissions"><a class="header" href="#角色和权限-role_permissions">角色和权限 (role_permissions)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>role_id</td><td>角色ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>permission_id</td><td>权限ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+<h2 id="菜单和权限-menu_permissions"><a class="header" href="#菜单和权限-menu_permissions">菜单和权限 (menu_permissions)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>字段</th><th>名称</th><th>类型</th><th>约束</th><th>备注</th></tr></thead><tbody>
+<tr><td>id</td><td>id</td><td>bigint</td><td>PRIMARY KEY,NOT NULL</td><td>雪花ID</td></tr>
+<tr><td>menu_id</td><td>菜单ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>permission_id</td><td>权限ID</td><td>bigint</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>create_time</td><td>创建时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+<tr><td>update_time</td><td>更新时间</td><td>timestamp</td><td>NOT NULL</td><td>-</td></tr>
+</tbody></table>
+</div>
+                        <div id="giscus-container"></div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../backend/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../others/life/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../backend/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../others/life/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../docs/giscus.js"></script>
+
+
+    </body>
+</html>
