@@ -13,6 +13,7 @@
     - [Nginx](tech/middleware/Nginx.md)
     - [Kafka使用指南](tech/middleware/kafka.md)
     - [跨云厂商部署](tech/cloudnative/clouddeploy.md)
+    - [学习K8s](tech/cloudnative/learn-k8s.md)
     - [K8s组件](tech/cloudnative/k8s-subassembly.md)
     - [K8s client-go](tech/cloudnative/k8s-client-go.md)
     - [OPA](tech/cloudnative/open-policy-agent.md)
