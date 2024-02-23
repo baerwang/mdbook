@@ -22,6 +22,7 @@
 - [Rust Blog](rust/README.md)
 
     - [benchmark](rust/bench.md)
+    - [hurl](rust/hurl.md)
 
 - [Sec Blog](sec/README.md)
 
