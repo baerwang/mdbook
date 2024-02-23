@@ -51,6 +51,8 @@ jsonpath "$.card[0].key" != "key"
 ./hurl --test example.hurl --report-html .
 ```
 
+![报表](pics/img-20240223162124.png)
+
 ### [更多功能](https://hurl.dev/docs/manual.html#options)
 
 ### [integration](https://hurl.dev/docs/tutorial/ci-cd-integration.html)
