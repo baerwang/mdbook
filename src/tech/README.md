@@ -13,6 +13,7 @@
 * [`K8s client-go`](cloudnative/k8s-client-go.md)
 * [`K8s operator 基于Nginx 创建 higress`](https://github.com/baerwang/k8s-operator)
 * [`OPA`](cloudnative/open-policy-agent.md)
+* [`服务网络 ServiceMesh`](https://mp.weixin.qq.com/s/mTAzHNZGtOWBVh-GcgJz0w)
 
 ## Git
 
