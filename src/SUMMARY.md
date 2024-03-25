@@ -31,6 +31,7 @@
 - [Backend Blog](backend/README.md)
 
     - [多租户权限管理设计](backend/tenants.md)
+    - [openapi](backend/openapi.md)
 
 # other
 
