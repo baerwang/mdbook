@@ -18,6 +18,7 @@
 ## Git
 
 * [`协作合并多仓库`](git/merge_two_repo.md)
+* [`Git提交添加签名认证`](git/git_commit_verified.md)
 
 ## other
 

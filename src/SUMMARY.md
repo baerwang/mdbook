@@ -18,6 +18,7 @@
     - [K8s client-go](tech/cloudnative/k8s-client-go.md)
     - [OPA](tech/cloudnative/open-policy-agent.md)
     - [协作合并多仓库](tech/git/merge_two_repo.md)
+    - [Git提交添加签名认证](tech/git/git_commit_verified.md)
 
 - [Rust Blog](rust/README.md)
 
