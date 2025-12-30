@@ -48,3 +48,4 @@
     - [2022](others/summarize/2022.md)
     - [2023](others/summarize/2023.md)
     - [2024](others/summarize/2024.md)
+    - [2025](others/summarize/2025.md)
